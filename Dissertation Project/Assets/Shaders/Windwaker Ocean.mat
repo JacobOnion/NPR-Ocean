@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Windwaker Ocean
+  m_Shader: {fileID: -6465566751694194690, guid: 918637b8b6758724fb34f02e261e5d01, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Flow_Map:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Foam_Texture:
+        m_Texture: {fileID: 2800000, guid: a13cb65a960332840973b6702ae17a70, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_e9b8b00e91cd4e23bd7a8eb6d6093f21_Out_0_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 8dbe68819bb9c974bb3d5a6f9ae8886b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WaterMovement_a8a1aa8dac3e44f8b7fac78e2571c2f3_FlowMap_2233744465_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 8dbe68819bb9c974bb3d5a6f9ae8886b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Amplitude_Scaler: 0.83
+    - _Brightness: 2.5
+    - _Fade_Multiplier: 0.2
+    - _Foam_Cutoff: 4
+    - _Foam_Distortion: 0.01
+    - _Foam_Size: -3.16
+    - _Foam_Speed: -0.03
+    - _Foam_amount: 1
+    - _Frequency_Scaler: 1.15
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Sea_Level: 0
+    - _Water_Depth: 10
+    - _Wave_Amplitude: 3
+    - _Wave_Count: 5
+    - _Wave_Density: 251
+    - _Wave_Speed: 3.52
+    - _Wave_Strength: 6.55
+    m_Colors:
+    - _Ambient_Color: {r: 0, g: 0.12660208, b: 0.20754719, a: 1}
+    - _Dark_Foam_Color: {r: 0.050418306, g: 0.103773594, b: 0.07442227, a: 1}
+    - _Deep_Color: {r: 0, g: 0.16176462, b: 1, a: 1}
+    - _Foam_Color: {r: 1, g: 1, b: 1, a: 0.62352943}
+    - _Foam_Scale: {r: 330, g: 10, b: 0, a: 0}
+    - _Shadow_Color: {r: 0.007787468, g: 0.19201665, b: 0.3301887, a: 1}
+    - _Shallow_color: {r: 0.34603062, g: 0.9056604, b: 0.7715227, a: 1}
+    - _black: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!114 &5461098686792104652
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Editor::UnityEditor.Rendering.Universal.AssetVersion
+  version: 10
