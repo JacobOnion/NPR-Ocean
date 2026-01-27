@@ -28,8 +28,12 @@ Material:
         m_Texture: {fileID: 2800000, guid: a13cb65a960332840973b6702ae17a70, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Reflection_texture:
+        m_Texture: {fileID: 8400000, guid: 7c4a4235ec4f8c147b626c10e15ab284, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Skybox:
-        m_Texture: {fileID: 8900000, guid: b8d71e35643773b4ab30d4c56d54dc2e, type: 2}
+        m_Texture: {fileID: 8900000, guid: 76ee052e8e30fa74da399a8445b574c1, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2DAsset_e9b8b00e91cd4e23bd7a8eb6d6093f21_Out_0_Texture2D:
@@ -61,6 +65,7 @@ Material:
     - _Frequency_Scaler: 1.15
     - _Fresnel_Strength: 4
     - _Highlights_size: 0
+    - _Object_Fresnel_Strength: 7
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Ripple_Amplitude: 1
@@ -78,10 +83,11 @@ Material:
     m_Colors:
     - _Ambient_Color: {r: 0, g: 0.1254902, b: 0.20784314, a: 1}
     - _Dark_Foam_Color: {r: 0.050980393, g: 0.101960786, b: 0.07450981, a: 1}
-    - _Deep_Color: {r: 0.12495552, g: 0.47847888, b: 0.6792453, a: 1}
+    - _Deep_Color: {r: 0.13501245, g: 0.4944383, b: 0.6981132, a: 1}
     - _Foam_Color: {r: 0.7411765, g: 0.86870205, b: 1, a: 1}
     - _Foam_Scale: {r: 330, g: 1, b: 0, a: 0}
     - _Highlights_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Reflection_Color: {r: 0.3492346, g: 0.55753917, b: 0.6792453, a: 1}
     - _Shadow_Color: {r: 0.007843138, g: 0.19215687, b: 0.32941177, a: 1}
     - _Shallow_color: {r: 0.740566, g: 1, b: 0.9956028, a: 1}
   m_BuildTextureStacks: []

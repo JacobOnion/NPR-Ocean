@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _CubemapAsset_7dc92945e6e34583a412ccf0da77a186_Out_0_Cubemap:
-        m_Texture: {fileID: 8900000, guid: 7729258742252c143a9e8d753f2ca56c, type: 2}
+        m_Texture: {fileID: 8900000, guid: aa6d65cf20d38ab439525820d09dbeaf, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Foam_Texture:
@@ -59,7 +59,7 @@ Material:
     - _Foam_Speed: -0.03
     - _Foam_amount: 1
     - _Frequency_Scaler: 1.15
-    - _Fresnel_Strength: 6
+    - _Fresnel_Strength: 8
     - _Highlights_Size: 0.035
     - _QueueControl: 0
     - _QueueOffset: 0

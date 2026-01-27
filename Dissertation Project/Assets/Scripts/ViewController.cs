@@ -4,8 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class ViewController : MonoBehaviour
 {
+    [SerializeField] private int pos = 0;
     [SerializeField]
-    private Vector3 position1, position2;
+    private Vector3[] positions;
+    [SerializeField]
+    private Vector3[] rotations;
     void Start()
     {
         
@@ -26,6 +29,15 @@ public class ViewController : MonoBehaviour
         if (Input.GetKeyDown("3"))
         {
             SceneManager.LoadScene(2);
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            pos += 1;
+            if (pos == positions.Length)
+                pos = 0;
+            transform.position = positions[pos];
+            transform.rotation = Quaternion.Euler(rotations[pos]);
         }
     }
 }
