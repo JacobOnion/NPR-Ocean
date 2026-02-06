@@ -57,18 +57,18 @@ Material:
     - _Amplitude_Scaler: 0.83
     - _Brightness: 1
     - _Fade_Multiplier: 0.131
-    - _Foam_Cutoff: 4
+    - _Foam_Cutoff: 8
     - _Foam_Distortion: 0.01
     - _Foam_Size: -3.16
     - _Foam_Speed: -0.03
     - _Foam_amount: 1
     - _Frequency_Scaler: 1.15
     - _Fresnel_Strength: 4
-    - _Highlights_size: 0
+    - _Highlights_size: 0.57
     - _Object_Fresnel_Strength: 7
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Ripple_Amplitude: 1
+    - _Ripple_Amplitude: 0.17
     - _Ripple_Speed: 1
     - _Ripple_Width: 1
     - _Sea_Level: 2.01

@@ -1,10 +1,10 @@
 ﻿#ifndef RIPPLES_INCLUDED
 #define RIPPLES_INCLUDED
-#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/UnityInput.hlsl"
+//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/UnityInput.hlsl"
 
 #define RIPPLE_COUNT 16
 float4 RippleData[RIPPLE_COUNT]; // X, Y: pos, Z: radius, W: mass
-float time_elapsed = 0;
+//float time_elapsed = 0;
 
 
 void Ripples_float(
@@ -25,7 +25,7 @@ void Ripples_float(
     float z_normal = 0.0;
     #define PI 3.1415926535f
 
-    time_elapsed += unity_DeltaTime;
+    //time_elapsed += unity_DeltaTime;
     
     for (int i = 0; i < RIPPLE_COUNT; i++)
     {
@@ -36,7 +36,9 @@ void Ripples_float(
 
         float dist = distance(pos,  float2(RippleData[i].x, RippleData[i].y));
 
-        float amplitude = RippleData[i].w * ripple_amplitude / (dist + 1);
+        //float amplitude = RippleData[i].w * ripple_amplitude / (dist + 1);
+        float attenuation = exp(-dist * 1.1);  // change to variable
+        float amplitude = RippleData[i].w * ripple_amplitude * attenuation;
 
         float phase = dist * freq + time * ripple_speed;
         
@@ -45,7 +47,7 @@ void Ripples_float(
 
         out_height += s * amplitude;
         
-        
+        //out_height = 0;
     }
     
     
