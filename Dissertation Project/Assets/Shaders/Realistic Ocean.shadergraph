@@ -3533,8 +3533,8 @@
     "m_ObjectId": "3e7f0d94cf4d4f24a7610efa81634b8a",
     "m_Title": "Fresnel",
     "m_Position": {
-        "x": -968.9999389648438,
-        "y": 3367.000244140625
+        "x": -969.0,
+        "y": 3367.0
     }
 }
 
@@ -8491,7 +8491,7 @@
     "m_ObjectId": "e911950c94d84b39a3344f5baed570e2",
     "m_Title": "Specular highlights",
     "m_Position": {
-        "x": -873.9999389648438,
+        "x": -874.0,
         "y": 2118.0
     }
 }

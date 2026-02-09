@@ -9,7 +9,7 @@ public class SSRInputsRendererFeature : ScriptableRendererFeature
     [System.Serializable]
     public class Settings
     {
-        public RenderPassEvent injectionPoint = RenderPassEvent.AfterRenderingOpaques; // run after GBuffer in deferred or after forward opaques
+        public RenderPassEvent injectionPoint = RenderPassEvent.AfterRenderingSkybox; // run after GBuffer in deferred or after forward opaques
         public bool copySceneColor = true;               // copy to avoid read-while-write hazards
         public string sceneColorId = "_SSR_SceneColor";  // global name for Shader Graph
         public string depthId = "_SSR_DepthTexture";

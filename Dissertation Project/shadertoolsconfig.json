@@ -1,5 +1,17 @@
 {
   "hlsl.preprocessorDefinitions": {
+    "MY_PREPROCESSOR_DEFINE_1": "Foo",
+    "MY_PREPROCESSOR_DEFINE_2": 1
+  },
+  "hlsl.additionalIncludeDirectories": [
+    "C:\\Code\\MyDirectoryA",
+    "C:\\Code\\MyDirectoryB",
+    ".",
+    "..\\RelativeDirectory"
+  ],
+
+  
+  "hlsl.preprocessorDefinitions": {
     "__INTELLISENSE__": ""
   },
 
@@ -15,4 +27,5 @@
     "Packages/com.unity.render-pipelines.core/ShaderLibrary":
       "Library/PackageCache/com.unity.render-pipelines.core@*/ShaderLibrary"
   }
+
 }

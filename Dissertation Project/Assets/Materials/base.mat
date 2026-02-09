@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: base
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 04f91fa871cd3bc459000d8b0db91f8f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -30,8 +30,7 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: Opaque
+  stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
   m_LockedProperties: 
@@ -62,6 +61,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Foam_Texture:
+        m_Texture: {fileID: 2800000, guid: a13cb65a960332840973b6702ae17a70, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -76,6 +79,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Reflection_texture:
+        m_Texture: {fileID: 8400000, guid: 7c4a4235ec4f8c147b626c10e15ab284, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Skybox:
+        m_Texture: {fileID: 8900000, guid: 76ee052e8e30fa74da399a8445b574c1, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -99,8 +110,10 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
+    - _Amplitude_Scaler: 0.8
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
+    - _Brightness: 1
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -111,27 +124,62 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _Fade_Multiplier: 0.2
+    - _Foam_Cutoff: 1
+    - _Foam_Distortion: 0.075
+    - _Foam_Size: 0.1
+    - _Foam_Speed: 0.1
+    - _Foam_amount: 1
+    - _Frequency_Scaler: 1.2
+    - _Fresnel_Strength: 5
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Highlights_size: 16
     - _Metallic: 0
+    - _Object_Fresnel_Strength: 5
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _Ripple_Amplitude: 1
+    - _Ripple_Speed: 1
+    - _Ripple_Width: 1
+    - _Sea_Level: 0
     - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
+    - _Step_Transition: 1
+    - _Step_edge: 0
     - _Surface: 0
+    - _Water_Depth: 10
+    - _Wave_Amplitude: 0.05
+    - _Wave_Count: 5
+    - _Wave_Density: 6
+    - _Wave_Speed: 1
+    - _Wave_Strength: 1
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
+    - _max_steps: 64
+    - _step_distance: 0.2
+    - _step_scale: 0.2
     m_Colors:
+    - _Ambient_Color: {r: 0, g: 0, b: 0, a: 1}
     - _BaseColor: {r: 0.5943396, g: 0.51921594, b: 0.40089887, a: 1}
     - _Color: {r: 0.5943396, g: 0.5192159, b: 0.4008988, a: 1}
+    - _Dark_Foam_Color: {r: 0.111071564, g: 0.15379018, b: 0.6037736, a: 1}
+    - _Deep_Color: {r: 0, g: 0.12898117, b: 0.8018868, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Foam_Color: {r: 1, g: 1, b: 1, a: 0.7843137}
+    - _Foam_Scale: {r: 1, g: 1, b: 0, a: 0}
+    - _Highlights_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Reflection_Color: {r: 0.57787466, g: 0.7997807, b: 0.8113207, a: 1}
+    - _Shadow_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Shallow_color: {r: 0.5613207, g: 1, b: 0.9211524, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
