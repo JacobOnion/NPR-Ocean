@@ -65,12 +65,15 @@ Material:
     - _Frequency_Scaler: 1.15
     - _Fresnel_Strength: 5
     - _Highlights_size: 0.57
-    - _Object_Fresnel_Strength: 0.17
+    - _Object_Fresnel_Strength: 0.6
+    - _PLANARS_ENABLED: 0
+    - _Planar_Fresnel_Strength: 2
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Ripple_Amplitude: 0.17
     - _Ripple_Speed: 1
     - _Ripple_Width: 1
+    - _SSR_Fresnel_Strength: 1.5
     - _Sea_Level: 2.01
     - _Step_Transition: 0.7
     - _Step_edge: 0
@@ -80,9 +83,9 @@ Material:
     - _Wave_Density: 191.3
     - _Wave_Speed: 2
     - _Wave_Strength: 6.55
-    - _max_steps: 128
-    - _ray_thickness: 0.5
-    - _step_distance: 0.2
+    - _max_steps: 64
+    - _ray_thickness: 3
+    - _step_distance: 0.72
     - _step_scale: 0.2
     m_Colors:
     - _Ambient_Color: {r: 0, g: 0.1254902, b: 0.20784314, a: 1}

@@ -76,9 +76,10 @@ Material:
     - _Wave_Density: 6
     - _Wave_Speed: 1
     - _Wave_Strength: 1
-    - _max_steps: 15
-    - _step_distance: 0.5
+    - _max_steps: 96
+    - _step_distance: 1.37
     - _step_scale: 0.1
+    - _thickness: 0.7
     m_Colors:
     - _Ambient_Color: {r: 0, g: 0, b: 0, a: 1}
     - _Dark_Foam_Color: {r: 0.111071564, g: 0.15379018, b: 0.6037736, a: 1}

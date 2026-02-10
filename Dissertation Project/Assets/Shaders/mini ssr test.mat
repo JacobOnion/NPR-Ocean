@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: mini ssr test
+  m_Shader: {fileID: -6465566751694194690, guid: 04f91fa871cd3bc459000d8b0db91f8f, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Foam_Texture:
+        m_Texture: {fileID: 2800000, guid: a13cb65a960332840973b6702ae17a70, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Reflection_texture:
+        m_Texture: {fileID: 8400000, guid: 7c4a4235ec4f8c147b626c10e15ab284, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Skybox:
+        m_Texture: {fileID: 8900000, guid: 76ee052e8e30fa74da399a8445b574c1, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Amplitude_Scaler: 0.8
+    - _Brightness: 1
+    - _Fade_Multiplier: 0.2
+    - _Foam_Cutoff: 1
+    - _Foam_Distortion: 0.075
+    - _Foam_Size: 0.1
+    - _Foam_Speed: 0.1
+    - _Foam_amount: 1
+    - _Frequency_Scaler: 1.2
+    - _Fresnel_Strength: 5
+    - _Highlights_size: 16
+    - _Object_Fresnel_Strength: 5
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Ripple_Amplitude: 1
+    - _Ripple_Speed: 1
+    - _Ripple_Width: 1
+    - _Sea_Level: 0
+    - _Step_Transition: 1
+    - _Step_edge: 0
+    - _Water_Depth: 10
+    - _Wave_Amplitude: 0.05
+    - _Wave_Count: 5
+    - _Wave_Density: 6
+    - _Wave_Speed: 1
+    - _Wave_Strength: 1
+    - _max_steps: 96
+    - _step_distance: 0.05
+    - _step_scale: 0.1
+    - _thickness: 0.15
+    m_Colors:
+    - _Ambient_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Dark_Foam_Color: {r: 0.111071564, g: 0.15379018, b: 0.6037736, a: 1}
+    - _Deep_Color: {r: 0, g: 0.12898117, b: 0.8018868, a: 1}
+    - _Foam_Color: {r: 1, g: 1, b: 1, a: 0.7843137}
+    - _Foam_Scale: {r: 1, g: 1, b: 0, a: 0}
+    - _Highlights_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Reflection_Color: {r: 0.57787466, g: 0.7997807, b: 0.8113207, a: 1}
+    - _Shadow_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Shallow_color: {r: 0.5613207, g: 1, b: 0.9211524, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!114 &9174886923137160308
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Editor::UnityEditor.Rendering.Universal.AssetVersion
+  version: 10
