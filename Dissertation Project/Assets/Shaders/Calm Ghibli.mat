@@ -29,11 +29,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Reflection_texture:
-        m_Texture: {fileID: 8400000, guid: 7c4a4235ec4f8c147b626c10e15ab284, type: 2}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Skybox:
-        m_Texture: {fileID: 8900000, guid: 76ee052e8e30fa74da399a8445b574c1, type: 2}
+        m_Texture: {fileID: 8900000, guid: aa6d65cf20d38ab439525820d09dbeaf, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2DAsset_e9b8b00e91cd4e23bd7a8eb6d6093f21_Out_0_Texture2D:
@@ -56,7 +56,7 @@ Material:
     m_Floats:
     - _Amplitude_Scaler: 0.83
     - _Brightness: 1
-    - _Fade_Multiplier: 0.131
+    - _Fade_Multiplier: 0.16
     - _Foam_Cutoff: 8
     - _Foam_Distortion: 0.01
     - _Foam_Size: -3.16
@@ -74,19 +74,20 @@ Material:
     - _Ripple_Speed: 1
     - _Ripple_Width: 1
     - _SSR_Fresnel_Strength: 1.5
-    - _Sea_Level: 2.01
+    - _Sea_Level: 0.5
     - _Step_Transition: 0.7
     - _Step_edge: 0
     - _Water_Depth: 10
-    - _Wave_Amplitude: 0.71
+    - _Wave_Amplitude: 0.21
     - _Wave_Count: 16
     - _Wave_Density: 191.3
     - _Wave_Speed: 2
     - _Wave_Strength: 6.55
+    - _max_depth: -9.39
     - _max_steps: 64
-    - _ray_thickness: 3
-    - _step_distance: 0.72
-    - _step_scale: 0.2
+    - _ray_thickness: 15.48
+    - _step_distance: 2.19
+    - _step_scale: 1.1
     m_Colors:
     - _Ambient_Color: {r: 0, g: 0.1254902, b: 0.20784314, a: 1}
     - _Dark_Foam_Color: {r: 0.050980393, g: 0.101960786, b: 0.07450981, a: 1}

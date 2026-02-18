@@ -46,12 +46,6 @@ inline float SampleRawDepth(TEXTURE2D_X_PARAM(tex, samp), float2 uv)
 }
 
 
-inline float3 ReconstructVS_FromRawDepth(float2 uv, float rawDepth)
-{
-    return ComputeViewSpacePosition(uv, rawDepth, UNITY_MATRIX_I_P);
-}
-
-
 inline float3 ReconstructViewPos(float2 uv, float depth_01)
 {
     float2 ndc = uv * 2.0f - 1.0f;  // remap from 0-1 to -1-1
@@ -60,47 +54,11 @@ inline float3 ReconstructViewPos(float2 uv, float depth_01)
 }
 
 
-// Project a view-space position to 0..1 UV (no flips/stereo/scale yet)
-inline float2 ViewToUV_NoFix(float3 posVS)
-{
-    float4 clip = mul(UNITY_MATRIX_P, float4(posVS, 1.0));
-    float2 ndc  = clip.xy / max(clip.w, 1e-6);
-    return ndc * 0.5f + 0.5f;
-}
-
-// Bring a 0..1 UV into the same space as URP RG RTHandles:
-//   - Y flip (platform dependent)
-//   - Stereo transform
-//   - RTHandle scale
-
-
-inline float2 ToRTUV(float2 uv01)
-{
-    float2 uv_rt = uv01;
-
-
-    #if UNITY_UV_STARTS_AT_TOP
-    uv_rt.y = 1.0 - uv_rt.y;
-    #endif
-
-    uv_rt = UnityStereoTransformScreenSpaceTex(uv_rt);
-
-    // Only apply RTHandle scaling when both the define and uniform are valid
-    #if defined(_RT_HANDLE_SCALING_FACTORS)
-    // In some pipelines/material paths, _RTHandleScale may not be bound; 
-    // if you see the same error, comment this block out or ensure the uniform is set.
-    uv_rt = ClampAndScaleUVForBilinear(uv_rt, _RTHandleScale.xy);
-    #endif
-
-    return uv_rt;
-}
-
-
-
 bool RayMarch(float3 pos_vs, float3 ray_vs, float2 startUV, float step,
-    float stepScale, int maxSteps, float thickness, out float2 hitsUV)
+    float stepScale, int maxSteps, float maxDist, float thickness, out float2 hitsUV)
 {
    const int MAX_STEPS = 64;
+    const int STEP_DIST = step;
     
     half stepSize = step;
     half accumulatedStep = 0.0;
@@ -137,19 +95,27 @@ bool RayMarch(float3 pos_vs, float3 ray_vs, float2 startUV, float step,
         float rawDepth = SampleRawDepth(
             TEXTURE2D_X_ARGS(_SSR_DepthTexture, sampler_SSR_DepthTexture), uv);
         float sceneEyeZ = LinearEyeDepth(rawDepth, _ZBufferParams);
+        // Don't return sky hits
+        //if (rawDepth <= maxDist)
+        //    return false;
         //float sceneVS_Z = -ComputeViewSpacePosition(uv, rawDepth, UNITY_MATRIX_I_P).z;
         float rayEyeZ = -pos.z;
         // Compare ray depth to depth of pixel in depth buffer
         float dz = rayEyeZ - sceneEyeZ;
         
         half sign = FastSign(dz);
-        binarySearch = binarySearch || (sign == 1) ? true : false; // Begin search if ray depth > scene depth
+        binarySearch = binarySearch || (sign == -1) ? true : false; // Begin search if ray depth > scene depth
         if (binarySearch && FastSign(stepSize) != sign)
         {
             stepSize = stepSize * sign * 0.5;
-            thickness *= 0.5;
+            //thickness *= 0.5;
         }
-
+        /*else if (!binarySearch)
+        {
+            stepSize = stepSize < STEP_DIST ? stepSize * stepScale + STEP_DIST * stepScale * 0.1 : stepSize * stepScale;
+            thickness = thickness * stepScale;
+        }*/
+        
         dz = abs(dz);
         if (rayEyeZ >= sceneEyeZ - thickness && dz <= thickness)
         {
@@ -162,9 +128,11 @@ bool RayMarch(float3 pos_vs, float3 ray_vs, float2 startUV, float step,
     return false;
 }
 
+//bool BinaryRefinement(
+
 
 void SSR_float(float2 screenPos, float3 pos_ws, float3 normal_ws, float3 viewDir_ws,
-    float step, float stepScale, int maxSteps, float thickness, out float4 outColor, out float reflectionMask)
+    float step, float stepScale, int maxSteps, float maxDist, float thickness, out float4 outColor, out float reflectionMask)
 {
     float2 st = screenPos;  // test w -wo
     //float2 st = ToRTUV(screenPos);
@@ -188,7 +156,7 @@ void SSR_float(float2 screenPos, float3 pos_ws, float3 normal_ws, float3 viewDir
 
     float2 hitsUV = st;
     float4 reflColor;
-    bool hit = RayMarch(pos_vs, ray_vs, st, step, stepScale, maxSteps, thickness, hitsUV);
+    bool hit = RayMarch(pos_vs, ray_vs, st, step, stepScale, maxSteps, maxDist, thickness, hitsUV);
     if (hit)
     {
         //Apply fresnel
