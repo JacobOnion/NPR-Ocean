@@ -1212,6 +1212,22 @@
 {
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "27938badb53348aa9a30ec0aa5b0e669",
+    "m_Id": 11,
+    "m_DisplayName": "thickness_scale",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "thickness_scale",
+    "m_StageCapability": 3,
+    "m_Value": 1.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": [],
+    "m_LiteralMode": false
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "27c79a6f9f0345b58fdd13d906f9b45a",
     "m_Id": 8,
     "m_DisplayName": "reflection_mask",
@@ -1414,7 +1430,7 @@
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
     "m_AlphaMode": 0,
-    "m_RenderFace": 2,
+    "m_RenderFace": 1,
     "m_AlphaClip": false,
     "m_CastShadows": false,
     "m_ReceiveShadows": true,
@@ -2273,6 +2289,9 @@
         },
         {
             "m_Id": "17d681ff848b476d8f5dce054564c99b"
+        },
+        {
+            "m_Id": "27938badb53348aa9a30ec0aa5b0e669"
         },
         {
             "m_Id": "b8551da76f1d44b5967fbce7c442d6c8"

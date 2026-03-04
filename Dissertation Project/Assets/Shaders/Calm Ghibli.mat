@@ -33,7 +33,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Skybox:
-        m_Texture: {fileID: 8900000, guid: aa6d65cf20d38ab439525820d09dbeaf, type: 2}
+        m_Texture: {fileID: 8900000, guid: b15764350a2285e49a165af927da5da5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2DAsset_e9b8b00e91cd4e23bd7a8eb6d6093f21_Out_0_Texture2D:
@@ -63,35 +63,41 @@ Material:
     - _Foam_Speed: -0.03
     - _Foam_amount: 1
     - _Frequency_Scaler: 1.15
-    - _Fresnel_Strength: 5
+    - _Fresnel_Strength: 6
     - _Highlights_size: 0.57
+    - _JitterStrength: 0
     - _Object_Fresnel_Strength: 0.6
     - _PLANARS_ENABLED: 0
     - _Planar_Fresnel_Strength: 2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Ripple_Amplitude: 0.17
-    - _Ripple_Speed: 1
-    - _Ripple_Width: 1
-    - _SSR_Fresnel_Strength: 1.5
+    - _Ripple_Amplitude: 1.3
+    - _Ripple_Distance_Decay: 0.1
+    - _Ripple_Growth: 1.4
+    - _Ripple_Speed: 12
+    - _Ripple_Time_Decay: 2.7
+    - _Ripple_Width: 25
+    - _SSR_Fresnel_Strength: 5
     - _Sea_Level: 0.5
     - _Step_Transition: 0.7
     - _Step_edge: 0
+    - _Thickness_Scale: 1
     - _Water_Depth: 10
     - _Wave_Amplitude: 0.21
     - _Wave_Count: 16
     - _Wave_Density: 191.3
     - _Wave_Speed: 2
     - _Wave_Strength: 6.55
-    - _max_depth: -9.39
+    - _max_depth: 709.8
     - _max_steps: 64
-    - _ray_thickness: 15.48
-    - _step_distance: 2.19
-    - _step_scale: 1.1
+    - _ray_thickness: 4.05
+    - _ripple_wavelength: 20
+    - _step_distance: 0.31
+    - _step_scale: 1.05
     m_Colors:
     - _Ambient_Color: {r: 0, g: 0.1254902, b: 0.20784314, a: 1}
     - _Dark_Foam_Color: {r: 0.050980393, g: 0.101960786, b: 0.07450981, a: 1}
-    - _Deep_Color: {r: 0.13501245, g: 0.4944383, b: 0.6981132, a: 1}
+    - _Deep_Color: {r: 0.044544343, g: 0.45060942, b: 0.7264151, a: 1}
     - _Foam_Color: {r: 0.7411765, g: 0.86870205, b: 1, a: 1}
     - _Foam_Scale: {r: 330, g: 1, b: 0, a: 0}
     - _Highlights_Color: {r: 1, g: 1, b: 1, a: 1}

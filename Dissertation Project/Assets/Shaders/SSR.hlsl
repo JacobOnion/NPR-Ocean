@@ -55,12 +55,12 @@ inline float3 ReconstructViewPos(float2 uv, float depth_01)
 
 
 bool RayMarch(float3 pos_vs, float3 ray_vs, float2 startUV, float step,
-    float stepScale, int maxSteps, float maxDist, float thickness, out float2 hitsUV)
+    float stepScale, int maxSteps, float maxDist, float thickness, float thicknessScale, float jitterStrength, out float2 hitsUV)
 {
    const int MAX_STEPS = 64;
     const int STEP_DIST = step;
     
-    half stepSize = step;
+    half stepSize = max(step, 0.001);
     half accumulatedStep = 0.0;
     float3 pos = pos_vs;
     float2 uv = startUV;
@@ -74,15 +74,18 @@ bool RayMarch(float3 pos_vs, float3 ray_vs, float2 startUV, float step,
         if (i > maxSteps) break;
         accumulatedStep += stepSize;
         //float stepDist = max(length(pos_vs) * stepScale / maxSteps, 0.001);
-        float stepDist = max(step, 0.001);
-        pos += ray_vs * stepDist;
-
+        //float stepDist = max(step, 0.001);
+        float  jitter = frac(sin(dot(startUV, float2(12.9898,78.233))) * 43758.5453) * jitterStrength;
+        pos += ray_vs * (stepSize + jitter);
+        // Prevent ray colliding with SSR surface
+        if (i < 4) continue;
         // convert vs back to screen uv
         float4 clip = mul(UNITY_MATRIX_P, float4(pos, 1.0));
         
         if (clip.w <= 0.0)
             break;
 
+        
         
         float2 ndc = clip.xy / max(clip.w, 1e-6);
         uv = ndc * 0.5 + 0.5;
@@ -96,25 +99,28 @@ bool RayMarch(float3 pos_vs, float3 ray_vs, float2 startUV, float step,
             TEXTURE2D_X_ARGS(_SSR_DepthTexture, sampler_SSR_DepthTexture), uv);
         float sceneEyeZ = LinearEyeDepth(rawDepth, _ZBufferParams);
         // Don't return sky hits
-        //if (rawDepth <= maxDist)
-        //    return false;
+        if (rawDepth > maxDist)
+            return false;
         //float sceneVS_Z = -ComputeViewSpacePosition(uv, rawDepth, UNITY_MATRIX_I_P).z;
         float rayEyeZ = -pos.z;
         // Compare ray depth to depth of pixel in depth buffer
         float dz = rayEyeZ - sceneEyeZ;
         
         half sign = FastSign(dz);
-        binarySearch = binarySearch || (sign == -1) ? true : false; // Begin search if ray depth > scene depth
-        if (binarySearch && FastSign(stepSize) != sign)
+        binarySearch = binarySearch || (sign == 1) ? true : false; // Begin search if ray depth > scene depth
+        if (binarySearch)
         {
+            //return false;
             stepSize = stepSize * sign * 0.5;
-            //thickness *= 0.5;
+            thickness *= thicknessScale;
         }
-        /*else if (!binarySearch)
+        else if (!binarySearch)
         {
-            stepSize = stepSize < STEP_DIST ? stepSize * stepScale + STEP_DIST * stepScale * 0.1 : stepSize * stepScale;
-            thickness = thickness * stepScale;
-        }*/
+            //return false;
+            //stepSize = stepSize < STEP_DIST ? stepSize * stepScale + STEP_DIST * stepScale * 0.1 : stepSize * stepScale;
+            stepSize = stepSize * stepScale;
+            //thickness = thickness * stepScale;
+        }
         
         dz = abs(dz);
         if (rayEyeZ >= sceneEyeZ - thickness && dz <= thickness)
@@ -132,7 +138,7 @@ bool RayMarch(float3 pos_vs, float3 ray_vs, float2 startUV, float step,
 
 
 void SSR_float(float2 screenPos, float3 pos_ws, float3 normal_ws, float3 viewDir_ws,
-    float step, float stepScale, int maxSteps, float maxDist, float thickness, out float4 outColor, out float reflectionMask)
+    float step, float stepScale, int maxSteps, float maxDist, float thickness, float thicknessScale, float jitterStrength, out float4 outColor, out float reflectionMask)
 {
     float2 st = screenPos;  // test w -wo
     //float2 st = ToRTUV(screenPos);
@@ -156,7 +162,7 @@ void SSR_float(float2 screenPos, float3 pos_ws, float3 normal_ws, float3 viewDir
 
     float2 hitsUV = st;
     float4 reflColor;
-    bool hit = RayMarch(pos_vs, ray_vs, st, step, stepScale, maxSteps, maxDist, thickness, hitsUV);
+    bool hit = RayMarch(pos_vs, ray_vs, st, step, stepScale, maxSteps, maxDist, thickness, thicknessScale, jitterStrength, hitsUV);
     if (hit)
     {
         //Apply fresnel
