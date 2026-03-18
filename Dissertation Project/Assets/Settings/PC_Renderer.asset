@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SSRInputsRendererFeature
   m_Active: 1
   settings:
-    injectionPoint: 400
+    injectionPoint: 300
     copySceneColor: 1
     sceneColorId: _SSR_SceneColor
     depthId: _SSR_DepthTexture

@@ -56,7 +56,9 @@ Material:
     m_Floats:
     - _Amplitude_Scaler: 0.83
     - _Brightness: 1
-    - _Fade_Multiplier: 0.16
+    - _Fade_Multiplier: 0.2
+    - _Fade_Offset: 5.5
+    - _Fade_Strength: 0
     - _Foam_Cutoff: 8
     - _Foam_Distortion: 0.01
     - _Foam_Size: -3.16
@@ -69,17 +71,21 @@ Material:
     - _Object_Fresnel_Strength: 0.6
     - _PLANARS_ENABLED: 0
     - _Planar_Fresnel_Strength: 2
+    - _Posturization: 25
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Ripple_Amplitude: 1.3
     - _Ripple_Distance_Decay: 0.1
+    - _Ripple_Foam_Multiplier: 0.15
     - _Ripple_Growth: 1.4
     - _Ripple_Speed: 12
     - _Ripple_Time_Decay: 2.7
     - _Ripple_Width: 25
     - _SSR_Fresnel_Strength: 5
+    - _SSR_Posterization: 5
     - _Sea_Level: 0.5
-    - _Step_Transition: 0.7
+    - _Splash_level: 1.5
+    - _Step_Transition: 0.48
     - _Step_edge: 0
     - _Thickness_Scale: 1
     - _Water_Depth: 10
@@ -88,12 +94,12 @@ Material:
     - _Wave_Density: 191.3
     - _Wave_Speed: 2
     - _Wave_Strength: 6.55
-    - _max_depth: 709.8
+    - _max_depth: 607.64
     - _max_steps: 64
-    - _ray_thickness: 4.05
+    - _ray_thickness: 3.17
     - _ripple_wavelength: 20
-    - _step_distance: 0.31
-    - _step_scale: 1.05
+    - _step_distance: 1.93
+    - _step_scale: 1.3
     m_Colors:
     - _Ambient_Color: {r: 0, g: 0.1254902, b: 0.20784314, a: 1}
     - _Dark_Foam_Color: {r: 0.050980393, g: 0.101960786, b: 0.07450981, a: 1}

@@ -88,12 +88,12 @@ Material:
     - _Wave_Density: 41.06
     - _Wave_Speed: 1.8
     - _Wave_Strength: 6.55
-    - _max_depth: 48.06
+    - _max_depth: 500.35
     - _max_steps: 64
-    - _ray_thickness: 0.24
+    - _ray_thickness: 1.1
     - _ripple_wavelength: 2.5
-    - _step_distance: 0.03
-    - _step_scale: 1.09
+    - _step_distance: 0.2
+    - _step_scale: 2.01
     m_Colors:
     - _Ambient_Color: {r: 0, g: 0.1254902, b: 0.20784314, a: 1}
     - _Dark_Foam_Color: {r: 0.050980393, g: 0.101960786, b: 0.07450981, a: 1}
