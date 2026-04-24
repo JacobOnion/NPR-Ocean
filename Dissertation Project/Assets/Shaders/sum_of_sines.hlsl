@@ -25,25 +25,7 @@ void Sum_of_Sines_float(
     float x_normal = 0.0;
     float z_normal = 0.0;
     #define PI 3.1415926535f
-
-
-    /*const int WAVE_COUNT = 5;
-
-    float2 dirs[WAVE_COUNT] = {
-        normalize(float2( 1,  0)),
-        normalize(float2( 0,  1)),
-        normalize(float2( 1,  1)),
-        normalize(float2(-1,  1)),
-        normalize(float2(0.7, 0.7))
-    };*/
-    /*float2 dirs[num_waves];
-    for (int i = 0; i < num_waves; i++)
-    {
-        dirs[i] = normalize(hash2_11(i));
-    }*/
-
-    //float freqs[WAVE_COUNT]  = { 0.6, 0.8, 1.1, 0.4, 10.0 };
-    //float speeds[WAVE_COUNT] = { 0.5, 0.7, 0.6, 0.4, 1.0 };
+    
 
     float freq = 2.0 * PI / wavelength; // Freq i guess?
     float ds = 0;

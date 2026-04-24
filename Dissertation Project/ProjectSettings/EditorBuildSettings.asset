@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ghibli Scene.unity
     guid: 40ad43f82ac35a342a5cc956ac0633cd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Windwaker Scene.unity
     guid: 3b63e84347c2d0a43843ad3ff0774257
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Realistic Scene.unity
     guid: 8f8039b98559d634e95159ecfce705a6
   m_configObjects:

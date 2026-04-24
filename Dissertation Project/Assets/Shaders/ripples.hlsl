@@ -2,7 +2,7 @@
 #define RIPPLES_INCLUDED
 //#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/UnityInput.hlsl"
 
-#define RIPPLE_COUNT 16
+#define RIPPLE_COUNT 64
 float4 _RippleData[RIPPLE_COUNT]; // X, Y: pos, Z: radius, W: mass
 float _RippleStartTimes[RIPPLE_COUNT];
 int _RippleCount;

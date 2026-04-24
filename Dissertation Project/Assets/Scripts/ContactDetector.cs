@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ContactDetector : MonoBehaviour
 {
-    public const int MAX_RIPPLES = 16;
+    public const int MAX_RIPPLES = 64;
     [SerializeField] private Material oceanMat;
     //public Vector4[] ripples = new Vector4[MAX_RIPPLES];
     // X, Y: pos, Z: radius, W: mass
@@ -53,8 +53,6 @@ public class ContactDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("ocean collision");
-
         StartCoroutine(CreateRipple(other));
     }
 
@@ -94,7 +92,6 @@ public class ContactDetector : MonoBehaviour
                 ripples[i].active = false;
                 continue;
             }
-            Debug.Log(i);
             // Pack as: (x, y, radius, amplitude)
             /*rippleDataList.Add(new Vector4(
                 ripples[i].center.x,

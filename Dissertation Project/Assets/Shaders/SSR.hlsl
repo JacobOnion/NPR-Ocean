@@ -75,9 +75,6 @@ bool RayMarch(float3 pos_vs, float3 ray_vs, float waterlevel, float2 startUV, fl
     {
         if (i > maxSteps) break;
         accumulatedStep += stepSize;
-        //float stepDist = max(length(pos_vs) * stepScale / maxSteps, 0.001);
-        //float stepDist = max(step, 0.001);
-        //float  jitter = frac(sin(dot(startUV, float2(12.9898,78.233))) * 43758.5453) * jitterStrength;
         pos += ray_vs * stepSize;
         // Prevent ray colliding with SSR surface
         if (i < 4) continue;
