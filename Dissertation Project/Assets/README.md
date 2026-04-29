@@ -3,9 +3,9 @@
 A real-time stylised water renderer combining ocean simulation with non-photorealistic rendering techniques to recreate a 2D animation aesthetic.
 
 <!-- TODO: replace with a screenshot or short GIF of the renderer in action -->
-![Screenshot](Dissertation%20Project/Assets/Docs/screenshot.png)
+![Screenshot](Docs/screenshot.png)
 
-This project accompanies the BSc Computer Science dissertation *"Using Non-Photorealistic Rendering Techniques to Create Efficient Real-Time Stylised Oceans"* (University of Leeds, School of Computing, 2026). The full write-up is included as [`ONION26-FINAL.pdf`](Dissertation%20Project/Assets/Docs/ONION26-FINAL.pdf).
+This project accompanies the BSc Computer Science dissertation *"Using Non-Photorealistic Rendering Techniques to Create Efficient Real-Time Stylised Oceans"* (University of Leeds, School of Computing, 2026). The full write-up is included as [`ONION26-FINAL.pdf`]().
 
 ## Overview
 
@@ -23,7 +23,7 @@ There are two ways to run the project, depending on your needs.
 
 ### Quick demo (pre-built)
 
-A standalone Windows build is included under [`../Build/`](Dissertation%20Project/Build/). Run [`../Build/Dissertation_Project.exe`](Dissertation%20Project/Build/Dissertation_Project.exe) to see the renderer running with the default scene and parameters.
+A standalone Windows build is included under [`../Build/`](../Build/). Run [`../Build/Dissertation_Project.exe`](../Build/Dissertation_Project.exe) to see the renderer running with the default scene and parameters.
 
 > **Note:** the standalone build runs with fixed parameters and does not expose runtime tweaking. To adjust wave, foam, reflection, or stylisation settings, use the Unity editor (below). The build can also be unstable with SSR enabled for currently unknown reasons
 
@@ -32,7 +32,7 @@ A standalone Windows build is included under [`../Build/`](Dissertation%20Projec
 1. Install Unity Hub and Unity 6000.3.1f1.
 2. Clone or download this repository.
 3. In Unity Hub, click **Add → Add project from disk** and select the project folder.
-4. Open the project, then open [`Demo/Demo Scene.unity`](Dissertation%20Project/Assets/Demo/Demo%20Scene.unity).
+4. Open the project, then open [`Demo/Demo Scene.unity`](Demo/Demo%20Scene.unity).
 5. Press **Play**.
 
 Parameter tweaking is exposed via the Inspector on the water material and the `WaterController` component on the water object in the scene.
