@@ -5,8 +5,6 @@
 #define RIPPLE_COUNT 64
 float4 _RippleData[RIPPLE_COUNT]; // X, Y: pos, Z: radius, W: mass
 float _RippleStartTimes[RIPPLE_COUNT];
-int _RippleCount;
-//float time_elapsed = 0;
 
 
 void CalculateHeight(float2 pos, float time, float ripple_speed,

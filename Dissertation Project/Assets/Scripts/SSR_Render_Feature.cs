@@ -1,6 +1,88 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.RenderGraphModule;
+using UnityEngine.Rendering.Universal;
+
+public class SSRInputsRendererFeature : ScriptableRendererFeature
+{
+    [System.Serializable]
+    public class Settings
+    {
+        // BeforeRenderingTransparents runs after the skybox and after URP's own
+        // CopyColor pass, so _CameraOpaqueTexture and _CameraDepthTexture are
+        // both guaranteed to be valid by the time we run.
+        public RenderPassEvent injectionPoint = RenderPassEvent.BeforeRenderingTransparents;
+        public string normalsId = "_SSR_NormalsTexture";
+    }
+
+    class SSRInputsPass : ScriptableRenderPass
+    {
+        readonly Settings settings;
+        readonly int normalsNameId;
+        readonly int cameraNormalsNameId;
+
+        public SSRInputsPass(Settings s)
+        {
+            settings = s;
+            renderPassEvent = s.injectionPoint;
+
+            // Ask URP to produce depth and normals. In deferred this is a no-op
+            // for normals (gBuffer[2] already exists), but it keeps the feature
+            // safe if you ever switch to forward.
+            ConfigureInput(ScriptableRenderPassInput.Depth | ScriptableRenderPassInput.Normal);
+
+            normalsNameId = Shader.PropertyToID(settings.normalsId);
+            cameraNormalsNameId = Shader.PropertyToID("_CameraNormalsTexture");
+        }
+
+        class PassData { }
+
+        public override void RecordRenderGraph(RenderGraph rg, ContextContainer frameData)
+        {
+            var res = frameData.Get<UniversalResourceData>();
+
+            using (var builder = rg.AddRasterRenderPass<PassData>("SSR Expose Normals", out var passData))
+            {
+                builder.AllowPassCulling(false);
+
+                // In deferred, gBuffer[2] is normals + smoothness. Alias it to
+                // both _CameraNormalsTexture (so standard URP shaders work) and
+                // our own _SSR_NormalsTexture (for the water shader).
+                var g = res.gBuffer;
+                if (g != null && g.Length > 2 && g[2].IsValid())
+                {
+                    builder.SetGlobalTextureAfterPass(g[2], cameraNormalsNameId);
+                    builder.SetGlobalTextureAfterPass(g[2], normalsNameId);
+                }
+                else if (res.cameraNormalsTexture.IsValid())
+                {
+                    // Forward fallback — URP produces this when ConfigureInput
+                    // requests Normal.
+                    builder.SetGlobalTextureAfterPass(res.cameraNormalsTexture, normalsNameId);
+                }
+
+                builder.SetRenderFunc((PassData d, RasterGraphContext ctx) => { /* no draw; just globals */ });
+            }
+        }
+    }
+
+    public Settings settings = new Settings();
+    SSRInputsPass pass;
+
+    public override void Create() => pass = new SSRInputsPass(settings);
+
+    public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
+        => renderer.EnqueuePass(pass);
+}
+
+
+
+
+
+
+/*using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.RenderGraphModule;
 using UnityEngine.Rendering.RenderGraphModule.Util;
 using UnityEngine.Rendering.Universal;
 
@@ -9,7 +91,7 @@ public class SSRInputsRendererFeature : ScriptableRendererFeature
     [System.Serializable]
     public class Settings
     {
-        public RenderPassEvent injectionPoint = RenderPassEvent.AfterRenderingOpaques; // run after GBuffer in deferred or after forward opaques
+        public RenderPassEvent injectionPoint = RenderPassEvent.BeforeRenderingTransparents; // run after GBuffer in deferred or after forward opaques
         public bool copySceneColor = true;               // copy to avoid read-while-write hazards
         public string sceneColorId = "_SSR_SceneColor";  // global name for Shader Graph
         public string depthId = "_SSR_DepthTexture";
@@ -77,8 +159,8 @@ public class SSRInputsRendererFeature : ScriptableRendererFeature
                     builder.SetGlobalTextureAfterPass(g[2], normalsNameId);
                 }
                 
-                builder.SetRenderFunc((PassData d, RasterGraphContext ctx) => { /* no draw; just globals */ });
-            }
+                builder.SetRenderFunc((PassData d, RasterGraphContext ctx) => { /* no draw; just globals */// });
+/*            }
         }
     }
 
@@ -89,4 +171,4 @@ public class SSRInputsRendererFeature : ScriptableRendererFeature
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         => renderer.EnqueuePass(pass);
-}
+}*/

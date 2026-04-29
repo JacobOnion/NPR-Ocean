@@ -26,12 +26,12 @@ public class ParameterManager : MonoBehaviour
             {
                 Debug.Log("Doesnt exist");
             }
-            Apply();
+            //Apply();
         }
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.R)) Apply();
+            //if (Input.GetKeyDown(KeyCode.R)) Apply();
         }
 
         void Apply()

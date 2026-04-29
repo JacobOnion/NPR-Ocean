@@ -120,9 +120,9 @@ public class ContactDetector : MonoBehaviour
             rippleDataList[i] = Vector4.zero;
             rippleStartTimesList[i] = -1f; // negative so shader "continue;"
         }
-        Shader.SetGlobalVectorArray("_RippleData", rippleDataList);
-        Shader.SetGlobalFloatArray("_RippleStartTimes", rippleStartTimesList);  // Maybe dont need this?
-        Shader.SetGlobalInt("_RippleCount", activeCount);
+        oceanMat.SetVectorArray("_RippleData", rippleDataList);
+        oceanMat.SetFloatArray("_RippleStartTimes", rippleStartTimesList);  // Maybe dont need this?
+        //oceanMat.SetInt("_RippleCount", activeCount);
         
     }
     

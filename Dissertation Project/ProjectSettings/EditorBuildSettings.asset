@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/Ghibli Scene.unity
+    path: Assets/Demo/Demo Scene.unity
     guid: 40ad43f82ac35a342a5cc956ac0633cd
   - enabled: 0
     path: Assets/Scenes/Windwaker Scene.unity

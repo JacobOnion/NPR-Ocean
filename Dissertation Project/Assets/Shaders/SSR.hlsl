@@ -3,12 +3,7 @@
 
 // Core URP helpers
 
-
-
-// Guard for Shader Graph preview / early-include cases in SG
 #if defined(SHADERGRAPH_PREVIEW)
-    // Unity 6/URP defines MAX_VISIBLE_LIGHT_COUNT_* in a config header,
-    // but in some preview paths it isn't available yet.
     #ifndef MAX_VISIBLE_LIGHTS
         #define MAX_VISIBLE_LIGHTS 0
     #endif
@@ -16,33 +11,31 @@
 
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
-// If you want to use URP's normal sampling helper:
-//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareNormalsTexture.hlsl"
-// (DeclareNormalsTexture.hlsl provides SampleSceneNormals(uv) which decodes octahedral normals)
-
 // --- Our globals published by the Renderer Feature ---
 // Scene color (copied to avoid read/modify hazards by the feature)
-TEXTURE2D_X(_SSR_SceneColor);
-SAMPLER(sampler_SSR_SceneColor);
+//TEXTURE2D(_SSR_SceneColor);
+//SAMPLER(sampler_SSR_SceneColor);
 
-// Depth copy (URP _CameraDepthTexture or active depth alias)
-// We'll convert to linear01.
-TEXTURE2D_X(_SSR_DepthTexture);
-SAMPLER(sampler_SSR_DepthTexture);
+// Depth copy
+//TEXTURE2D(_SSR_DepthTexture);
+//SAMPLER(sampler_SSR_DepthTexture);
+
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareOpaqueTexture.hlsl"
 
 
 // Sample scene depth from texture in linear 0-1 form
-inline float SampleLinearDepth(TEXTURE2D_X_PARAM( tex, samp),
+inline float SampleLinearDepth(TEXTURE2D_PARAM( tex, samp),
 float2 uv) 
 {
-    float raw = SAMPLE_TEXTURE2D_X(tex, samp, uv).r;
+    float raw = SAMPLE_TEXTURE2D(tex, samp, uv).r;
     return Linear01Depth(raw, _ZBufferParams);
 }
 
 
-inline float SampleRawDepth(TEXTURE2D_X_PARAM(tex, samp), float2 uv)
+inline float SampleRawDepth(TEXTURE2D_PARAM(tex, samp), float2 uv)
 {
-    return SAMPLE_TEXTURE2D_X(tex, samp, uv).r;
+    return SAMPLE_TEXTURE2D(tex, samp, uv).r;
 }
 
 
@@ -66,14 +59,13 @@ bool RayMarch(float3 pos_vs, float3 ray_vs, float waterlevel, float2 startUV, fl
     half stepSize = max(step, 0.001);
     half accumulatedStep = 0.0;
     float3 pos = pos_vs;
-    float2 uv = startUV;
 
     bool binarySearch = false;
     pos += ray_vs * 0.02;
     // Performance note: consider changing to conditional assignments ( : ? ) over conditional branch 
     for (int i = 0; i < MAX_STEPS; i++)
     {
-        if (i > maxSteps) break;
+        //if (i > maxSteps) break;
         accumulatedStep += stepSize;
         pos += ray_vs * stepSize;
         // Prevent ray colliding with SSR surface
@@ -85,7 +77,7 @@ bool RayMarch(float3 pos_vs, float3 ray_vs, float waterlevel, float2 startUV, fl
             break;
 
         
-        
+        float2 uv = startUV;
         float2 ndc = clip.xy / max(clip.w, 1e-6);
         uv = ndc * 0.5 + 0.5;
         //uv = ToRTUV(uv);
@@ -95,16 +87,16 @@ bool RayMarch(float3 pos_vs, float3 ray_vs, float waterlevel, float2 startUV, fl
             break;
 
         float rawDepth = SampleRawDepth(
-            TEXTURE2D_X_ARGS(_SSR_DepthTexture, sampler_SSR_DepthTexture), uv);
+            TEXTURE2D_ARGS(_CameraDepthTexture, sampler_CameraDepthTexture), uv);
         float sceneEyeZ = LinearEyeDepth(rawDepth, _ZBufferParams);
+        
         //float sceneVS_Z = -ComputeViewSpacePosition(uv, rawDepth, UNITY_MATRIX_I_P).z;
         float rayEyeZ = -pos.z;
+        
         // Compare ray depth to depth of pixel in depth buffer
         float dz = rayEyeZ - sceneEyeZ;
-        
         half sign = FastSign(dz);
         binarySearch = binarySearch || (sign == 1) ? true : false; // Begin search if ray depth > scene depth
-
         // Don't return sky hits
         float3 hitPos_vs = float3(
         (uv * 2.0 - 1.0) * float2(1, -1) * sceneEyeZ / 
@@ -122,7 +114,7 @@ bool RayMarch(float3 pos_vs, float3 ray_vs, float waterlevel, float2 startUV, fl
         if (binarySearch)
         {
             //return false;
-            stepSize = -stepSize * 0.5;
+            //stepSize = -stepSize * 0.5;
             //thickness *= thicknessScale;
         }
         else if (!binarySearch)
@@ -150,12 +142,18 @@ bool RayMarch(float3 pos_vs, float3 ray_vs, float waterlevel, float2 startUV, fl
 
 
 void SSR_float(float2 screenPos, float3 pos_ws, float3 normal_ws, float3 viewDir_ws,
-    float step, float stepScale, int maxSteps, float maxDist, float thickness,
+    float step, float stepScale, float maxSteps, float maxDist, float thickness,
     float fadeOffset, float fadeStrength, out float4 outColor, out float reflectionMask)
 {
     float2 st = screenPos;  // test w -wo
+    
+
+    //float rawDepth = SAMPLE_TEXTURE2D_X(_CameraDepthTexture, sampler_CameraDepthTexture, st).r;
+    //outColor = float4(rawDepth.xxx, 1);
+    //reflectionMask = 1;
+    //return;
     //float2 st = ToRTUV(screenPos);
-    float4 sceneCol = SAMPLE_TEXTURE2D_X(_SSR_SceneColor, sampler_SSR_SceneColor, st);  // Get scene color at current pixel
+    float4 sceneCol = SAMPLE_TEXTURE2D(_CameraOpaqueTexture, sampler_CameraOpaqueTexture, st);  // Get scene color at current pixel
     
     float3 ray_ws = reflect(-normalize(viewDir_ws), normalize(normal_ws));
     
@@ -193,14 +191,14 @@ void SSR_float(float2 screenPos, float3 pos_ws, float3 normal_ws, float3 viewDir
         float fresnel = F0 + (1.0 - F0) * pow(1.0 - VoH, 5.0);
         //hitsUV = ToRTUV(hitsUV);
         //hitsUV.y = 1 - hitsUV.y;
-        reflColor = SAMPLE_TEXTURE2D_X(_SSR_SceneColor, sampler_SSR_SceneColor, hitsUV);
+        reflColor = SAMPLE_TEXTURE2D(_CameraOpaqueTexture, sampler_CameraOpaqueTexture, hitsUV);
         reflColor = lerp(sceneCol, reflColor, fresnel);
         //reflColor = sceneCol;
         reflectionMask = 1.0;
     }
     else
     {
-        reflColor = (0,0,0,0);
+        reflColor = float4(0,0,0,0);
         reflectionMask = 0.0;
     }
 
