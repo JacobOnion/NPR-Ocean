@@ -3,7 +3,7 @@
 A real-time stylised water renderer combining ocean simulation with non-photorealistic rendering techniques to recreate a 2D animation aesthetic.
 
 <!-- TODO: replace with a screenshot or short GIF of the renderer in action -->
-![Screenshot](Dissertation Project/Assets/Docs/Screenshot.png)
+![Screenshot](Dissertation%Project/Assets/Docs/Screenshot.png)
 
 This project accompanies the BSc Computer Science dissertation *"Using Non-Photorealistic Rendering Techniques to Create Efficient Real-Time Stylised Oceans"* (University of Leeds, School of Computing, 2026). The full write-up is included as [`ONION26-FINAL.pdf`](Dissertation%20Project/Assets/Docs/ONION26-FINAL.pdf).
 
